@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>StudyPulse — Result</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root { --bg:#f5f2ee; --surface:#fff; --accent:#5b6af0; --accent-light:#eceeff; --text:#1a1a2e; --muted:#7a7a8c; --border:#e4e0d8; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px; }
+  .card { background:var(--surface); border-radius:24px; padding:40px 36px; max-width:560px; width:100%; box-shadow:0 4px 24px rgba(91,106,240,0.08); }
+  .card h2 { font-family:'DM Serif Display',serif; font-size:1.7rem; margin-bottom:8px; }
+  .card p { color:var(--muted); font-size:0.95rem; line-height:1.7; margin-bottom:24px; }
+  .reflection { border-left:3px solid var(--accent); background:var(--accent-light); border-radius:0 12px 12px 0; padding:20px; font-size:0.97rem; line-height:1.75; margin-bottom:24px; }
+  .disclaimer { background:#fffbf5; border:1px solid #f0e5d0; border-radius:12px; padding:14px 16px; font-size:0.78rem; color:#8a7a60; line-height:1.6; margin-bottom:24px; }
+  .disclaimer strong { color:#6a5a40; }
+  .btn { display:inline-block; background:var(--accent); color:white; border:none; padding:14px 32px; border-radius:100px; font-family:'DM Sans',sans-serif; font-size:0.95rem; font-weight:500; cursor:pointer; text-decoration:none; transition:all 0.2s; }
+  .btn:hover { background:#4a59e0; transform:translateY(-1px); }
+</style>
+</head>
+<body>
+<div class="card">
+  <h2>Your weekly reflection</h2>
+  <p>Here's what StudyPulse found based on your check-in.</p>
+  <div class="reflection" id="reflection-content">
+    {% if reflection %}
+      {{ reflection | safe }}
+    {% else %}
+      No reflection yet — <a href="/">go back and complete your check-in</a>.
+    {% endif %}
+  </div>
+  <div class="disclaimer">
+    <strong>Important:</strong> StudyPulse is a wellness awareness tool, not a mental health service.
+    It does not diagnose, treat, or replace professional support. If you're feeling overwhelmed,
+    please reach out to your campus counseling center or a trusted person in your life.
+  </div>
+  <a href="/" class="btn">← New check-in</a>
+</div>
+</body>
+</html>

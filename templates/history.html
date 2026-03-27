@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>StudyPulse — History</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root { --bg:#f5f2ee; --surface:#fff; --accent:#5b6af0; --accent-light:#eceeff; --text:#1a1a2e; --muted:#7a7a8c; --border:#e4e0d8; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px; }
+  .card { background:var(--surface); border-radius:24px; padding:40px 36px; max-width:560px; width:100%; box-shadow:0 4px 24px rgba(91,106,240,0.08); }
+  .card h2 { font-family:'DM Serif Display',serif; font-size:1.7rem; margin-bottom:8px; }
+  .card p { color:var(--muted); font-size:0.95rem; line-height:1.7; margin-bottom:28px; }
+  .empty-state { text-align:center; padding:40px 0; }
+  .empty-icon { font-size:2.5rem; margin-bottom:16px; }
+  .empty-state h3 { font-family:'DM Serif Display',serif; font-size:1.3rem; margin-bottom:8px; }
+  .empty-state p { color:var(--muted); font-size:0.9rem; }
+  .history-item { border:1px solid var(--border); border-radius:14px; padding:18px 20px; margin-bottom:14px; }
+  .history-item .date { font-size:0.78rem; color:var(--muted); margin-bottom:8px; }
+  .history-chips { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:10px; }
+  .history-chip { background:var(--accent-light); color:var(--accent); font-size:0.75rem; padding:3px 10px; border-radius:100px; }
+  .history-item .snippet { font-size:0.88rem; color:var(--muted); line-height:1.6; }
+  .btn { display:inline-block; background:var(--accent); color:white; border:none; padding:14px 32px; border-radius:100px; font-family:'DM Sans',sans-serif; font-size:0.95rem; font-weight:500; cursor:pointer; text-decoration:none; transition:all 0.2s; }
+  .btn:hover { background:#4a59e0; transform:translateY(-1px); }
+</style>
+</head>
+<body>
+<div class="card">
+  <h2>Check-in history</h2>
+  <p>A look back at your recent weekly reflections.</p>
+
+  {% if history %}
+    {% for entry in history %}
+    <div class="history-item">
+      <div class="date">{{ entry.date }}</div>
+      <div class="history-chips">
+        <span class="history-chip">😴 {{ entry.sleep }} hrs</span>
+        <span class="history-chip">📚 {{ entry.workload }}/5</span>
+        <span class="history-chip">😤 {{ entry.stress }}/5</span>
+        <span class="history-chip">🧑‍🤝‍🧑 {{ entry.social }}/5</span>
+        <span class="history-chip">🏃 {{ entry.movement }}/5</span>
+      </div>
+      <div class="snippet">{{ entry.reflection }}</div>
+    </div>
+    {% endfor %}
+  {% else %}
+    <div class="empty-state">
+      <div class="empty-icon">🌿</div>
+      <h3>No check-ins yet</h3>
+      <p>Complete your first weekly check-in to start building your history.</p>
+    </div>
+  {% endif %}
+
+  <br/>
+  <a href="/" class="btn">← Back to check-in</a>
+</div>
+</body>
+</html>
